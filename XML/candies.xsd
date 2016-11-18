@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="candies" type="candies"/>
+
+  <xs:element name="candy" type="candy"/>
+
+  <xs:element name="value" type="Value"/>
+
+  <xs:complexType name="candies">
+    <xs:sequence>
+      <xs:element ref="candy" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="candy">
+    <xs:sequence>
+      <xs:element name="name" type="xs:ID" minOccurs="0"/>
+      <xs:element name="energy" type="xs:int"/>
+      <xs:element name="type" type="MyString" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="ingredient" type="MyString" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="value"/>
+    </xs:sequence>
+    <xs:attribute name="production" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="MyString">
+    <xs:sequence/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Value">
+    <xs:sequence/>
+    <xs:attribute name="protein" type="xs:float" use="required"/>
+    <xs:attribute name="carbonates" type="xs:float" use="required"/>
+    <xs:attribute name="fats" type="xs:float" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="candyEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CANDY"/>
+      <xs:enumeration value="NAME"/>
+      <xs:enumeration value="ENERGY"/>
+      <xs:enumeration value="TYPE"/>
+      <xs:enumeration value="INGREDIENT"/>
+      <xs:enumeration value="VALUE"/>
+      <xs:enumeration value="PRODUCTION"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="valueEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PROTEIN"/>
+      <xs:enumeration value="CARBONATES"/>
+      <xs:enumeration value="FATS"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
